@@ -27,4 +27,6 @@ resume-site/
 
 ## 部署
 
-站点通过 GitHub Pages 发布。首次搭建与域名绑定步骤见仓库 README 说明，更新内容只需 `git add` → `commit` → `push`，GitHub Pages 会自动重新发布。
+- 仓库地址：https://github.com/zhou415770319/resume
+- 发布方式：GitHub Pages（`main` 分支根目录）
+- 完整搭建与域名绑定步骤见 [DEPLOY.md](./DEPLOY.md)；日常更新只需 `git add` → `commit` → `push`，GitHub Pages 会自动重新发布。
