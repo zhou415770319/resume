@@ -1,8 +1,9 @@
-# 部署手册：GitHub Pages + 自定义域名 feiyumdm.cn
+# 部署手册：GitHub Pages + 子域名 resume.feiyumdm.cn
 
 > 本目录是纯静态站点（HTML / CSS / JS + 本地图片），无后端、无数据库。
 > 托管方案：**GitHub Pages**（免费、自带 HTTPS、支持自定义域名）。
-> 域名 `feiyumdm.cn` 的 DNS 当前由 **Cloudflare** 管理（NS：henrik.ns.cloudflare.com / nelci.ns.cloudflare.com）。
+> 站点绑定子域名 `resume.feiyumdm.cn`；主域 `feiyumdm.cn` 与本站无关，保持原状即可。
+> 域名 DNS 当前由 **Cloudflare** 管理（NS：henrik.ns.cloudflare.com / nelci.ns.cloudflare.com）。
 
 ---
 
@@ -14,8 +15,8 @@
    ├─ 1. GitHub 创建公开仓库
    ├─ 2. 本地 git 初始化 → 提交 → 关联远程 → 推送
    ├─ 3. 仓库 Settings → Pages 开启（main 分支 / 根目录）
-   ├─ 4. 仓库 Settings → Pages → Custom domain 填 feiyumdm.cn
-   ├─ 5. Cloudflare DNS：主域 4 条 A 记录 + www 1 条 CNAME
+   ├─ 4. 仓库 Settings → Pages → Custom domain 填 resume.feiyumdm.cn
+   ├─ 5. Cloudflare DNS：子域名 resume 一条 CNAME → zhou415770319.github.io
    └─ 6. 等待 DNS 传播与证书签发 → 勾选 Enforce HTTPS → 验证访问
 ```
 
@@ -29,7 +30,7 @@
 ```
 resume-site/
 ├── index.html              # 站点主页面（样式、脚本全部内联）
-├── CNAME                   # 内容：feiyumdm.cn（GitHub Pages 自定义域名记录）
+├── CNAME                   # 内容：resume.feiyumdm.cn（GitHub Pages 自定义域名记录）
 ├── README.md
 ├── .gitignore
 └── assets/
@@ -109,10 +110,10 @@ git remote -v       # 应显示 origin 指向你的仓库地址
 
 ---
 
-## 六、阶段 D：在 GitHub 绑定自定义域名 feiyumdm.cn
+## 六、阶段 D：在 GitHub 绑定子域名 resume.feiyumdm.cn
 
 1. 仓库 → **Settings** → **Pages**
-2. **Custom domain** 输入框填写：`feiyumdm.cn`，点击 **Save**
+2. **Custom domain** 输入框填写：`resume.feiyumdm.cn`，点击 **Save**
 3. GitHub 会自动在仓库根目录生成/更新 `CNAME` 文件（本目录已预置，内容一致，无需手动改）
 4. 页面会显示域名检测状态：
    - 提示 **DNS check successful** 即绑定成功；
@@ -127,31 +128,22 @@ git remote -v       # 应显示 origin 指向你的仓库地址
 
 1. 登录 https://dash.cloudflare.com → 选择 `feiyumdm.cn`
 2. 左侧 **DNS** → **Records**
-3. **先删除**该域名下已存在的、指向其他地址的默认 A / CNAME 记录（当前查询为空，无冲突，跳过即可）。
+3. 确认没有其他 `resume` 开头的旧记录；若有指向其他地址的同名记录，先删除。
 
-### 7.1 主域（apex）A 记录 —— 共 4 条
-
-| Type | Name | Value | Proxy status |
-| --- | --- | --- | --- |
-| A | `@` | `185.199.108.153` | DNS only（灰色云朵） |
-| A | `@` | `185.199.109.153` | DNS only（灰色云朵） |
-| A | `@` | `185.199.110.153` | DNS only（灰色云朵） |
-| A | `@` | `185.199.111.153` | DNS only（灰色云朵） |
-
-> 以上 4 个 IP 为 GitHub Pages 官方公布的 apex 地址。
-
-### 7.2 www 子域 CNAME —— 共 1 条
+### 7.1 子域名 CNAME —— 共 1 条
 
 | Type | Name | Value | Proxy status |
 | --- | --- | --- | --- |
-| CNAME | `www` | `zhou415770319.github.io` | DNS only（灰色云朵） |
+| CNAME | `resume` | `zhou415770319.github.io` | DNS only（灰色云朵） |
 
-> 注意：CNAME 的值**只写 `zhou415770319.github.io`**，不要带仓库名，不要写成 `*.pages.github.io`。
+> 注意：
+> - CNAME 的值**只写 `zhou415770319.github.io`**，不要带仓库名 `resume`，不要写成 `*.pages.github.io`。
+> - 子域名方案**不需要**为主域 `@` 添加任何 A 记录，也不需要配置 `www`。
 
-### 7.3 代理状态说明（避免踩坑）
+### 7.2 代理状态说明（避免踩坑）
 
 - 首次绑定期间，**云朵保持灰色（DNS only）**。Cloudflare 橙色代理（Proxied）会在 DNS 与 GitHub 之间多一层，容易导致证书校验失败、重定向循环。
-- 等 `https://feiyumdm.cn` 可以正常访问、HTTPS 正常后，如确需 Cloudflare CDN 加速，再把云朵切为橙色，并将 **SSL/TLS → Overview** 模式设为 **Full (Strict)**。
+- 等 `https://resume.feiyumdm.cn` 可以正常访问、HTTPS 正常后，如确需 Cloudflare CDN 加速，再把云朵切为橙色，并将 **SSL/TLS → Overview** 模式设为 **Full (Strict)**。
 - 不要使用 `*.feiyumdm.cn` 通配符记录，存在域名被劫持风险。
 
 ---
@@ -161,17 +153,16 @@ git remote -v       # 应显示 origin 指向你的仓库地址
 ### 8.1 DNS 解析检查（PowerShell）
 
 ```powershell
-# 主域应解析到上面 4 个 GitHub Pages IP
-Resolve-DnsName feiyumdm.cn -Type A
+# resume 子域应 CNAME 到 zhou415770319.github.io
+Resolve-DnsName resume.feiyumdm.cn -Type CNAME
 
-# www 应 CNAME 到 zhou415770319.github.io
-Resolve-DnsName www.feiyumdm.cn -Type CNAME
+# 可继续查看最终 A 记录解析
+Resolve-DnsName resume.feiyumdm.cn -Type A
 ```
 
 ### 8.2 浏览器访问验证
 
-- `https://feiyumdm.cn` —— 应直接打开简历站，地址栏显示安全锁。
-- `https://www.feiyumdm.cn` —— 应自动 301 跳转到 `https://feiyumdm.cn`。
+- `https://resume.feiyumdm.cn` —— 应直接打开简历站，地址栏显示安全锁。
 - 逐屏滚动检查：项目截图、H5 页面、按钮、灯箱放大预览均正常。
 - GitHub 仓库 Settings → Pages 中，Custom domain 下方应显示绿色提示 `DNS check successful`，并出现 `Enforce HTTPS` 勾选框。
 
@@ -199,7 +190,7 @@ GitHub Pages 会自动重新发布，通常 1～2 分钟内生效。无需重新
 | 图片仍然打不开 | 确认 `assets/images/` 目录及图片已 `git push` 到远程仓库；路径必须是相对路径 `assets/images/xxx.png`。 |
 | 提示重定向循环 / HTTPS 证书错误 | Cloudflare 处于橙色代理状态。先改为 DNS only（灰云）；若已开代理，SSL/TLS 模式必须为 **Full (Strict)**。 |
 | `Enforce HTTPS` 勾选框是灰色 | GitHub 尚未签发完证书。DNS 生效后等待几小时，选项会自动可用。 |
-| www 无法跳转到主域 | 检查 www 的 CNAME 值是否为 `zhou415770319.github.io`（不带仓库名），记录类型必须是 CNAME。 |
+| 子域名无法访问 / 报 404 | 检查 CNAME 记录名是否为 `resume`、值是否为 `zhou415770319.github.io`（不带仓库名），记录类型必须是 CNAME。 |
 | 仓库改了内容但线上没变 | 浏览器缓存：强制刷新（Ctrl+F5）；确认推送成功且 Pages 构建完成（仓库 Actions 无失败记录）。 |
 | GitHub Pages 提示域名被占用 | 该域名可能曾被其他仓库绑定过：在 GitHub 设置页点 **Remove** 解除旧绑定后重新保存。 |
 
@@ -208,4 +199,3 @@ GitHub Pages 会自动重新发布，通常 1～2 分钟内生效。无需重新
 ## 十一、关键参考来源
 
 - GitHub 官方文档：[Managing a custom domain for your GitHub Pages site](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
-- GitHub Pages 官方 apex A 记录：185.199.108.153 / 185.199.109.153 / 185.199.110.153 / 185.199.111.153

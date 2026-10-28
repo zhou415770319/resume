@@ -1,6 +1,6 @@
 # 周飞 · 个人简历网站
 
-高级前端开发工程师个人作品集简历站点，纯静态页面（原生 HTML / CSS / JavaScript，无框架、无构建步骤），托管于 GitHub Pages，绑定自定义域名 `feiyumdm.cn`。
+高级前端开发工程师个人作品集简历站点，纯静态页面（原生 HTML / CSS / JavaScript，无框架、无构建步骤），托管于 GitHub Pages，绑定子域名 `resume.feiyumdm.cn`。
 
 ## 目录结构
 
