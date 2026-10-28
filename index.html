@@ -350,6 +350,47 @@ button{font-family:inherit}
 }
 .shot:hover .shot-name{opacity:1;transform:none}
 
+/* ===== 截图折叠 / 展开 ===== */
+.fold-wrap{position:relative}
+.fold-body{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.fold-wrap.folded .fold-body{
+  max-height:218px;overflow:hidden;
+}
+.fold-wrap.folded::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:86px;z-index:3;pointer-events:none;
+  background:linear-gradient(180deg,rgba(6,11,20,0),var(--bg) 92%);
+}
+.fold-toggle{
+  display:inline-flex;align-items:center;gap:8px;margin-top:14px;
+  font-family:inherit;font-size:13.5px;cursor:pointer;
+  color:var(--brand-hi);background:rgba(35,95,237,.08);
+  border:1px solid rgba(35,95,237,.32);border-radius:9px;
+  padding:7px 15px;transition:background .2s,border-color .2s;
+}
+.fold-toggle:hover{background:rgba(35,95,237,.16);border-color:var(--brand-hi)}
+.fold-toggle .arr{display:inline-block;transition:transform .25s ease;font-size:12px}
+.fold-wrap.open .fold-toggle .arr{transform:rotate(180deg)}
+
+/* ===== 个人项目卡片 ===== */
+.side-card{
+  background:var(--bg-card);border:1px solid var(--line);border-radius:16px;
+  margin-bottom:26px;overflow:hidden;transition:border-color .25s;
+}
+.side-card:hover{border-color:var(--line-strong)}
+.side-card .project-head{padding:26px 30px 0}
+.side-card .project-body{padding:20px 30px 26px}
+.side-badge{
+  display:inline-flex;align-items:center;gap:6px;margin-top:7px;
+  font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;
+  color:var(--cyan);background:rgba(73,199,232,.08);
+  border:1px solid rgba(73,199,232,.32);border-radius:6px;padding:2px 10px;
+}
+.side-card .sc-repo{
+  margin-top:16px;padding-top:16px;border-top:1px dashed var(--line);
+  font-family:var(--font-mono);font-size:12.5px;color:var(--muted);
+}
+.side-card .sc-repo code{color:var(--brand-hi);font-size:12px}
+
 /* ===== 工作经历 ===== */
 .timeline{position:relative;padding-left:34px}
 .timeline::before{
@@ -520,6 +561,7 @@ button{font-family:inherit}
       <li><a href="#about" data-nav="about">关于</a></li>
       <li><a href="#skills" data-nav="skills">技能</a></li>
       <li><a href="#projects" data-nav="projects">项目</a></li>
+      <li><a href="#side-projects" data-nav="side-projects">个人项目</a></li>
       <li><a href="#experience" data-nav="experience">经历</a></li>
       <li><a href="#gallery" data-nav="gallery">作品集</a></li>
       <li><a class="nav-cta" href="#contact">联系我</a></li>
@@ -885,6 +927,106 @@ button{font-family:inherit}
   </div>
 </section>
 
+<!-- ===== 个人项目 ===== -->
+<section class="section" id="side-projects">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-kicker">04 // side projects</div>
+      <h2 class="section-title">个人项目</h2>
+      <p class="section-sub">业余时间独立设计与开发的项目，覆盖儿童教育、游戏化学习与个人效率工具，从需求、架构到落地独立完成。</p>
+    </div>
+
+    <!-- 个人项目 1：童趣乐园 -->
+    <article class="side-card reveal" id="side-child-points">
+      <div class="project-head">
+        <div class="project-head-left">
+          <div class="project-num">01</div>
+          <div class="project-title">
+            <h3>童趣乐园 · 儿童积分任务系统</h3>
+            <div class="p-meta">uni-app 移动端 · 个人独立开发</div>
+            <span class="side-badge">SIDE PROJECT</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <p>面向儿童的积分任务系统移动端，提供<b>家长端 + 儿童端</b>双角色：家长布置任务、审核打卡并管理奖励，儿童领取任务、完成打卡、用积分兑换奖励。系统内置<b>积分 / 金币双货币体系</b>，兼顾日常激励与长期成长记录。</p>
+        <div class="p-block">
+          <h5>核心功能</h5>
+          <ul>
+            <li><b>家长端</b>：任务创建与审核、儿童积分 / 金币账户查看、兑换商城管理</li>
+            <li><b>儿童端</b>：任务领取、打卡提交、奖励积分与金币兑换</li>
+            <li><b>双货币规则体系</b>：积分与金币分账展示，规则可配置</li>
+          </ul>
+        </div>
+        <div class="project-stack">
+          <span class="tag">uni-app</span><span class="tag">uniCloud Serverless</span>
+        </div>
+        <div class="sc-repo">仓库目录：<code>child_points_uni</code></div>
+      </div>
+    </article>
+
+    <!-- 个人项目 2：知识竞技场 -->
+    <article class="side-card reveal" id="side-knowledge">
+      <div class="project-head">
+        <div class="project-head-left">
+          <div class="project-num">02</div>
+          <div class="project-title">
+            <h3>知识竞技场 · 游戏化知识测试平台</h3>
+            <div class="p-meta">Vue 3 应用 · 个人独立开发</div>
+            <span class="side-badge">SIDE PROJECT</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <p>面向儿童的游戏化知识测试平台，AI 根据主题<b>自动生成选择题闯关题库</b>，并内置记忆翻牌、数独等多种游戏模板，支持模板市场扩展。轻量数据库采用飞书多维表格，AI 能力以 BYOK（自带密钥）方式接入。</p>
+        <div class="p-block">
+          <h5>核心功能</h5>
+          <ul>
+            <li><b>AI 出题闯关</b>：按主题生成选择题，答题过程即时反馈与计分</li>
+            <li><b>多游戏模板</b>：记忆翻牌、数独、答题闯关等 6 类玩法模板</li>
+            <li><b>模板市场</b>：玩法模板可复用、可扩展，便于沉淀与分享</li>
+            <li><b>飞书多维表格存储</b>：题库与答题记录作为轻量数据库使用</li>
+          </ul>
+        </div>
+        <div class="project-stack">
+          <span class="tag">Vue 3</span><span class="tag">Node 云函数（腾讯 SCF / 阿里 FC）</span><span class="tag">飞书 Bitable</span>
+        </div>
+        <div class="sc-repo">仓库目录：<code>knowledge_colosseum</code></div>
+      </div>
+    </article>
+
+    <!-- 个人项目 3：Life-OS -->
+    <article class="side-card reveal" id="side-life-os">
+      <div class="project-head">
+        <div class="project-head-left">
+          <div class="project-num">03</div>
+          <div class="project-title">
+            <h3>Life-OS · 人生管理系统</h3>
+            <div class="p-meta">全栈应用 · 已发布 v1.0.0</div>
+            <span class="side-badge">SIDE PROJECT</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <p>一站式个人管理系统，覆盖<b>目标管理、微习惯养成、GTD 任务、番茄专注、时间黑洞分析与复盘面板</b>；内置全局 AI 助手，支持深度模式对话与长期记忆；系统能力通过插件热插拔扩展。</p>
+        <div class="p-block">
+          <h5>核心功能</h5>
+          <ul>
+            <li><b>任务与专注</b>：目标拆解、微习惯打卡、GTD 流程、番茄专注计时</li>
+            <li><b>时间复盘</b>：时间黑洞统计、周期复盘面板与回顾分析</li>
+            <li><b>全局 AI 助手</b>：深度模式对话 + 长期记忆，辅助规划与复盘</li>
+            <li><b>插件机制</b>：功能模块热插拔，按需扩展系统能力</li>
+          </ul>
+        </div>
+        <div class="project-stack">
+          <span class="tag">React 19</span><span class="tag">Vite</span><span class="tag">shadcn/ui</span><span class="tag">NestJS</span><span class="tag">Drizzle ORM</span><span class="tag">SQLite</span>
+        </div>
+        <div class="sc-repo">仓库目录：<code>life-os-platform</code></div>
+      </div>
+    </article>
+  </div>
+</section>
+
 <!-- ===== 工作经历 ===== -->
 <section class="section" id="experience">
   <div class="container">
@@ -1164,7 +1306,7 @@ button{font-family:inherit}
   /* ===== 导航滚动高亮 + 顶栏背景 ===== */
   var navLinks = document.querySelectorAll("[data-nav]");
   var sections = [];
-  ["about","skills","projects","experience","gallery"].forEach(function(id){
+  ["about","skills","projects","side-projects","experience","gallery"].forEach(function(id){
     var el = document.getElementById(id);
     if (el) sections.push(el);
   });
@@ -1221,6 +1363,35 @@ button{font-family:inherit}
       btn.firstChild.textContent = show ? "收起职责详情 " : "展开职责详情 ";
     });
   });
+
+  /* ===== 多图网格折叠 / 展开（超过两张才启用）===== */
+  function setupFoldableGrids(selector){
+    document.querySelectorAll(selector).forEach(function(grid){
+      var shots = grid.querySelectorAll(".shot");
+      if (shots.length <= 2) return;
+      var wrap = document.createElement("div");
+      wrap.className = "fold-wrap folded";
+      grid.parentNode.insertBefore(wrap, grid);
+      wrap.appendChild(grid);
+      grid.classList.add("fold-body");
+
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "fold-toggle";
+      btn.setAttribute("aria-expanded", "false");
+      btn.innerHTML = '展开全部截图 <span class="fold-count">' + shots.length + ' 张</span> <span class="arr">▾</span>';
+      wrap.appendChild(btn);
+
+      btn.addEventListener("click", function(){
+        var open = wrap.classList.toggle("open");
+        wrap.classList.toggle("folded", !open);
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+        btn.firstChild.textContent = open ? "收起截图 " : "展开全部截图 ";
+      });
+    });
+  }
+  setupFoldableGrids(".project-shots .shot-grid");
+  setupFoldableGrids(".gallery-grid");
 
   /* ===== 灯箱 ===== */
   var lb = document.getElementById("lightbox");
