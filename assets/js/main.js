@@ -197,4 +197,76 @@
   lb.addEventListener("click", function(e){
     if (e.target === lb) closeLightbox();
   });
+
+  /* ===== 核心能力雷达图 ===== */
+  (function initSkillRadar(){
+    var radarEl = document.getElementById("skillRadar");
+    if (!radarEl) return;
+    if (typeof window.echarts === "undefined") { radarEl.parentNode.style.display = "none"; return; }
+
+    var indicators = [
+      { name: "Vue / 工程化", max: 100 },
+      { name: "架构设计", max: 100 },
+      { name: "数据可视化", max: 100 },
+      { name: "跨端 / 小程序", max: 100 },
+      { name: "AI 应用开发", max: 100 },
+      { name: "iOS 原生", max: 100 }
+    ];
+    var values = [95, 90, 88, 85, 85, 78];
+
+    var chart = echarts.init(radarEl);
+    chart.setOption({
+      animationDuration: 1000,
+      animationEasing: "cubicOut",
+      tooltip: {
+        backgroundColor: "rgba(13,24,41,.95)",
+        borderColor: "rgba(120,150,190,.28)",
+        borderWidth: 1,
+        textStyle: { color: "#E7EEF8", fontSize: 12 },
+        formatter: function(params){
+          var list = params.value.map(function(v, i){ return indicators[i].name + "：" + v; });
+          return "<b>能力自评</b><br/>" + list.join("<br/>");
+        }
+      },
+      radar: {
+        indicator: indicators,
+        radius: "66%",
+        center: ["50%", "53%"],
+        splitNumber: 4,
+        axisName: { color: "#B7C6DB", fontSize: 12, fontFamily: "'Noto Sans SC', system-ui, -apple-system, sans-serif" },
+        splitLine: { lineStyle: { color: "rgba(120,150,190,.22)" } },
+        splitArea: { areaStyle: { color: ["rgba(13,24,41,.35)", "rgba(16,29,49,.35)"] } },
+        axisLine: { lineStyle: { color: "rgba(120,150,190,.28)" } }
+      },
+      series: [{
+        type: "radar",
+        name: "能力自评",
+        data: [{ value: values, name: "能力自评" }],
+        symbol: "circle",
+        symbolSize: 5,
+        lineStyle: { color: "#5B93FF", width: 2 },
+        itemStyle: { color: "#5B93FF", borderColor: "#0D1829", borderWidth: 1 },
+        areaStyle: { color: "rgba(91,147,255,.18)" }
+      }]
+    });
+
+    function resize(){ chart.resize(); }
+    window.addEventListener("resize", resize);
+
+    /* 滚动揭示进入视口后再校准一次尺寸，避免初始隐藏态下宽高为 0 */
+    var card = radarEl.closest(".about-card");
+    if ("IntersectionObserver" in window && card) {
+      var radarIO = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting) {
+            requestAnimationFrame(function(){ chart.resize(); });
+            radarIO.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      radarIO.observe(card);
+    } else {
+      requestAnimationFrame(resize);
+    }
+  })();
 })();
