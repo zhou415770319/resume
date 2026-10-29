@@ -230,10 +230,15 @@
       },
       radar: {
         indicator: indicators,
-        radius: "66%",
-        center: ["50%", "53%"],
+        radius: "58%",
+        center: ["50%", "50%"],
         splitNumber: 4,
-        axisName: { color: "#B7C6DB", fontSize: 12, fontFamily: "'Noto Sans SC', system-ui, -apple-system, sans-serif" },
+        axisName: {
+          color: "#B7C6DB",
+          fontSize: 12,
+          margin: 8,
+          fontFamily: "'Noto Sans SC', system-ui, -apple-system, sans-serif"
+        },
         splitLine: { lineStyle: { color: "rgba(120,150,190,.22)" } },
         splitArea: { areaStyle: { color: ["rgba(13,24,41,.35)", "rgba(16,29,49,.35)"] } },
         axisLine: { lineStyle: { color: "rgba(120,150,190,.28)" } }

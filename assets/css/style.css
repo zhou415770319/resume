@@ -150,7 +150,7 @@ button{font-family:inherit}
   -webkit-mask-image:radial-gradient(ellipse 90% 80% at 60% 40%,#000 30%,transparent 75%);
   mask-image:radial-gradient(ellipse 90% 80% at 60% 40%,#000 30%,transparent 75%);
 }
-.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
 .hero-eyebrow{
   font-family:var(--font-mono);font-size:14px;color:var(--cyan);
   letter-spacing:.18em;margin-bottom:22px;display:flex;align-items:center;gap:10px;
@@ -188,6 +188,7 @@ button{font-family:inherit}
 
 /* 终端 */
 .terminal{
+  width:100%;
   background:rgba(10,20,36,.86);
   border:1px solid var(--line-strong);
   border-radius:14px;
@@ -249,9 +250,10 @@ button{font-family:inherit}
 .info-row .value{color:var(--text-dim)}
 .info-row .value a{color:var(--brand-hi)}
 .core-skills{display:flex;flex-direction:column;gap:14px;margin-top:6px}
-.core-split{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center;margin-top:6px}
-.core-radar{width:100%;min-width:0}
-#skillRadar{width:100%;height:320px}
+.core-card{margin-top:28px}
+.core-split{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;margin-top:6px}
+.core-radar{width:100%;min-width:0;display:flex;justify-content:center}
+#skillRadar{width:100%;max-width:340px;height:300px}
 .core-skill .cs-head{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:7px}
 .core-skill .cs-head span{color:var(--text-dim)}
 .core-skill .cs-head em{font-style:normal;font-family:var(--font-mono);color:var(--cyan);font-size:12.5px}
