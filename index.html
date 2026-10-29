@@ -307,6 +307,10 @@ button{font-family:inherit}
 .project-title h3{font-size:20px;font-weight:700;margin-bottom:5px}
 .project-title .p-meta{font-family:var(--font-mono);font-size:12px;color:var(--muted);letter-spacing:.05em}
 .project-title .p-role{display:inline-flex;margin-top:7px}
+/* 项目标题锚点：点击标题平滑滚动到对应卡片，预留固定导航高度避免遮挡 */
+.pt-anchor{display:block;color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+.pt-anchor:hover{border-bottom-color:var(--brand-hi)}
+.project-card,.side-card{scroll-margin-top:calc(var(--nav-h) + 18px)}
 .project-body{padding:20px 30px 26px}
 .project-body p{color:var(--text-dim);font-size:14.5px;margin-bottom:16px}
 .p-block{margin-bottom:16px}
@@ -747,7 +751,7 @@ button{font-family:inherit}
         <div class="project-head-left">
           <div class="project-num">01</div>
           <div class="project-title">
-            <h3>中信创新实验室数字人项目</h3>
+            <a class="pt-anchor" href="#proj-digital-human" id="anchor-proj-digital-human"><h3>中信创新实验室数字人项目</h3></a>
             <div class="p-meta">2025.12 - 至今 · 持续迭代中</div>
             <span class="badge p-role">前端开发工程师</span>
           </div>
@@ -800,7 +804,7 @@ button{font-family:inherit}
         <div class="project-head-left">
           <div class="project-num">02</div>
           <div class="project-title">
-            <h3>Agent 手机银行项目</h3>
+            <a class="pt-anchor" href="#proj-ai-bank" id="anchor-proj-ai-bank"><h3>Agent 手机银行项目</h3></a>
             <div class="p-meta">2025.12 - 至今 · 持续迭代中</div>
             <span class="badge p-role">前端开发工程师</span>
           </div>
@@ -842,7 +846,7 @@ button{font-family:inherit}
         <div class="project-head-left">
           <div class="project-num">03</div>
           <div class="project-title">
-            <h3>爱鲜蜂（社区团购小程序）</h3>
+            <a class="pt-anchor" href="#proj-aifeng" id="anchor-proj-aifeng"><h3>爱鲜蜂（社区团购小程序）</h3></a>
             <div class="p-meta">2021.12 - 2022.11 · 项目周期 60 天</div>
             <span class="badge p-role">前端开发工程师 / 项目经理</span>
           </div>
@@ -885,7 +889,7 @@ button{font-family:inherit}
         <div class="project-head-left">
           <div class="project-num">04</div>
           <div class="project-title">
-            <h3>惠眼（大数据可视化平台）</h3>
+            <a class="pt-anchor" href="#proj-huiyan" id="anchor-proj-huiyan"><h3>惠眼（大数据可视化平台）</h3></a>
             <div class="p-meta">2020.09 - 2022.11 · 项目周期 300 天</div>
             <span class="badge p-role">前端技术负责人</span>
           </div>
@@ -927,7 +931,7 @@ button{font-family:inherit}
         <div class="project-head-left">
           <div class="project-num">05</div>
           <div class="project-title">
-            <h3>UI 组件库搭建</h3>
+            <a class="pt-anchor" href="#proj-uilib" id="anchor-proj-uilib"><h3>UI 组件库搭建</h3></a>
             <div class="p-meta">2020.09 - 2022.11</div>
             <span class="badge p-role">前端开发工程师</span>
           </div>
@@ -973,7 +977,7 @@ button{font-family:inherit}
         <div class="project-head-left">
           <div class="project-num">01</div>
           <div class="project-title">
-            <h3>童趣乐园 · 儿童积分任务系统</h3>
+            <a class="pt-anchor" href="#side-child-points" id="anchor-side-child-points"><h3>童趣乐园 · 儿童积分任务系统</h3></a>
             <div class="p-meta">uni-app 移动端 · 个人独立开发</div>
             <span class="side-badge">SIDE PROJECT</span>
           </div>
@@ -1024,7 +1028,7 @@ button{font-family:inherit}
         <div class="project-head-left">
           <div class="project-num">02</div>
           <div class="project-title">
-            <h3>知识竞技场 · 游戏化知识测试平台</h3>
+            <a class="pt-anchor" href="#side-knowledge" id="anchor-side-knowledge"><h3>知识竞技场 · 游戏化知识测试平台</h3></a>
             <div class="p-meta">Vue 3 应用 · 个人独立开发</div>
             <span class="side-badge">SIDE PROJECT</span>
           </div>
@@ -1073,7 +1077,7 @@ button{font-family:inherit}
         <div class="project-head-left">
           <div class="project-num">03</div>
           <div class="project-title">
-            <h3>Life-OS · 人生管理系统</h3>
+            <a class="pt-anchor" href="#side-life-os" id="anchor-side-life-os"><h3>Life-OS · 人生管理系统</h3></a>
             <div class="p-meta">全栈应用 · 已发布 v1.0.0</div>
             <span class="side-badge">SIDE PROJECT</span>
           </div>
@@ -1269,6 +1273,52 @@ button{font-family:inherit}
         <button class="shot" type="button" data-src="assets/images/oa-leave-list.png" data-name="我的休假 · 休假记录列表"><img src="assets/images/oa-leave-list.png" alt="我的休假" loading="lazy"><span class="shot-name">我的休假 · 记录列表</span></button>
         <button class="shot" type="button" data-src="assets/images/oa-leave-form.png" data-name="我要休假 · 异常考勤申请表单"><img src="assets/images/oa-leave-form.png" alt="异常考勤申请" loading="lazy"><span class="shot-name">异常考勤申请 · 表单</span></button>
         <button class="shot" type="button" data-src="assets/images/oa-annual-leave.png" data-name="我要休假 · 年假申请"><img src="assets/images/oa-annual-leave.png" alt="年假申请" loading="lazy"><span class="shot-name">年假申请 · 表单校验</span></button>
+      </div>
+    </div>
+
+    <!-- ===== 个人项目截图分组 ===== -->
+    <div class="gallery-group reveal">
+      <h3><span class="gg-num">[ 07 ]</span>童趣乐园 · 儿童积分任务系统</h3>
+      <p class="gg-desc">uni-app 移动端 · 家长端 + 儿童端，积分 / 金币双货币体系（个人独立开发）</p>
+      <div class="gallery-grid" data-group="g-child-points">
+        <button class="shot" type="button" data-src="assets/images/childpoints-1.png" data-name="登录页 · 家长端 / 儿童端切换与二级密码"><img src="assets/images/childpoints-1.png" alt="童趣乐园登录页" loading="lazy"><span class="shot-name">登录 · 双角色切换与二级密码</span></button>
+        <button class="shot" type="button" data-src="assets/images/childpoints-2.png" data-name="注册账号 · 手机号验证码与二级密码设置"><img src="assets/images/childpoints-2.png" alt="童趣乐园注册页" loading="lazy"><span class="shot-name">注册 · 验证码与二级密码</span></button>
+        <button class="shot" type="button" data-src="assets/images/childpoints-3.png" data-name="家长端首页 · 孩子账户、今日任务与待审核兑换"><img src="assets/images/childpoints-3.png" alt="童趣乐园家长端首页" loading="lazy"><span class="shot-name">家长端首页 · 任务与兑换审核</span></button>
+        <button class="shot" type="button" data-src="assets/images/childpoints-4.png" data-name="任务管理 · 条件筛选、新建任务与 AI 生成入口"><img src="assets/images/childpoints-4.png" alt="童趣乐园任务管理" loading="lazy"><span class="shot-name">任务管理 · 筛选与新建</span></button>
+        <button class="shot" type="button" data-src="assets/images/childpoints-5.png" data-name="AI 任务助手 · 对话式生成打卡任务"><img src="assets/images/childpoints-5.png" alt="童趣乐园 AI 任务助手" loading="lazy"><span class="shot-name">AI 任务助手 · 对话生成任务</span></button>
+        <button class="shot" type="button" data-src="assets/images/childpoints-6.png" data-name="商城管理 · 商品分类、积分金币定价与库存"><img src="assets/images/childpoints-6.png" alt="童趣乐园商城管理" loading="lazy"><span class="shot-name">商城管理 · 商品与库存</span></button>
+        <button class="shot" type="button" data-src="assets/images/childpoints-7.png" data-name="儿童端首页 · 连续打卡、任务领取与学习进度"><img src="assets/images/childpoints-7.png" alt="童趣乐园儿童端首页" loading="lazy"><span class="shot-name">儿童端首页 · 打卡与学习进度</span></button>
+        <button class="shot" type="button" data-src="assets/images/childpoints-8-detail.png" data-name="任务详情 · AI 评分与逐题分类点评"><img src="assets/images/childpoints-8-detail.png" alt="童趣乐园任务详情与 AI 评价" loading="lazy"><span class="shot-name">任务详情 · AI 评分点评</span></button>
+      </div>
+    </div>
+
+    <div class="gallery-group reveal">
+      <h3><span class="gg-num">[ 08 ]</span>知识竞技场 · 游戏化知识测试平台</h3>
+      <p class="gg-desc">Vue 3 应用 · AI 出题闯关 + 多游戏模板 + 模板市场，飞书多维表格存储（个人独立开发）</p>
+      <div class="gallery-grid" data-group="g-knowledge">
+        <button class="shot" type="button" data-src="assets/images/kc-1.png" data-name="首页看板 · 游戏总数 / 游玩次数 / 活跃游戏 / 成绩统计"><img src="assets/images/kc-1.png" alt="知识竞技场 · 首页统计看板" loading="lazy"><span class="shot-name">首页看板 · 游戏与成绩统计</span></button>
+        <button class="shot" type="button" data-src="assets/images/kc-2.png" data-name="模板市场 · 选择题闯关 / 记忆翻牌 / 数独等内置玩法模板"><img src="assets/images/kc-2.png" alt="知识竞技场 · 模板市场" loading="lazy"><span class="shot-name">模板市场 · 内置玩法模板</span></button>
+        <button class="shot" type="button" data-src="assets/images/kc-3.png" data-name="生成游戏向导 · 选择知识点与难度 / 题量 / 可玩次数配置"><img src="assets/images/kc-3.png" alt="知识竞技场 · 生成游戏向导" loading="lazy"><span class="shot-name">生成游戏 · 知识点与难度配置</span></button>
+        <button class="shot" type="button" data-src="assets/images/kc-4.png" data-name="知识点管理 · 学科年级单元题库知识点列表维护"><img src="assets/images/kc-4.png" alt="知识竞技场 · 知识点管理" loading="lazy"><span class="shot-name">知识点管理 · 题库列表维护</span></button>
+        <button class="shot" type="button" data-src="assets/images/kc-5.png" data-name="AI 提示词导入 · 教材知识点批量抽取与 JSON 导入"><img src="assets/images/kc-5.png" alt="知识竞技场 · AI 提示词导入" loading="lazy"><span class="shot-name">AI 提示词 · 知识点批量导入</span></button>
+        <button class="shot" type="button" data-src="assets/images/kc-6.png" data-name="AI API 配置 · BYOK 多服务商 Key 与模型接入管理"><img src="assets/images/kc-6.png" alt="知识竞技场 · AI API 配置" loading="lazy"><span class="shot-name">AI 配置 · BYOK 多服务商接入</span></button>
+        <button class="shot" type="button" data-src="assets/images/kc-7.png" data-name="模板规则 · 模板目录结构与共享渲染器机制"><img src="assets/images/kc-7.png" alt="知识竞技场 · 模板生成规则" loading="lazy"><span class="shot-name">模板规则 · 目录结构与渲染器</span></button>
+        <button class="shot" type="button" data-src="assets/images/kc-8.png" data-name="模板规则 · AI 按 Schema 生成游戏数据与请求参数"><img src="assets/images/kc-8.png" alt="知识竞技场 · 游戏数据生成规则" loading="lazy"><span class="shot-name">数据生成 · AI Schema 请求参数</span></button>
+        <button class="shot" type="button" data-src="assets/images/kc-9.png" data-name="模板规则 · 老师端建游戏与学生端游玩完整流程"><img src="assets/images/kc-9.png" alt="知识竞技场 · 游戏生成完整流程" loading="lazy"><span class="shot-name">完整流程 · 师生两端数据流</span></button>
+      </div>
+    </div>
+
+    <div class="gallery-group reveal">
+      <h3><span class="gg-num">[ 09 ]</span>Life-OS · 人生管理系统</h3>
+      <p class="gg-desc">全栈应用 · 目标管理 / 微习惯 / GTD / 番茄专注 / 时间黑洞分析与复盘面板，全局 AI 助手 + 插件热插拔</p>
+      <div class="gallery-grid" data-group="g-life-os">
+        <button class="shot" type="button" data-src="assets/images/life-os-1.png" data-name="人生成长看板 · 愿景目标 / 微习惯 / 认知看板与已装插件"><img src="assets/images/life-os-1.png" alt="Life-OS 人生成长看板" loading="lazy"><span class="shot-name">成长看板 · 目标 / 习惯 / 认知</span></button>
+        <button class="shot" type="button" data-src="assets/images/life-os-2.png" data-name="插件中心 · 已安装插件的启用、暂停与卸载管理"><img src="assets/images/life-os-2.png" alt="Life-OS 插件中心" loading="lazy"><span class="shot-name">插件中心 · 已装插件管理</span></button>
+        <button class="shot" type="button" data-src="assets/images/life-os-3.png" data-name="多平台 AI 模型服务配置与按用途分配默认模型"><img src="assets/images/life-os-3.png" alt="Life-OS AI 模型配置" loading="lazy"><span class="shot-name">AI 模型 · 多平台与用途分配</span></button>
+        <button class="shot" type="button" data-src="assets/images/life-os-4.png" data-name="在线插件市场与内置插件市场，一键安装扩展"><img src="assets/images/life-os-4.png" alt="Life-OS 插件市场" loading="lazy"><span class="shot-name">插件市场 · 在线 / 内置</span></button>
+        <button class="shot" type="button" data-src="assets/images/life-os-5.png" data-name="全局 AI 助手 · 深度模式对话与长期记忆"><img src="assets/images/life-os-5.png" alt="Life-OS AI 助手对话" loading="lazy"><span class="shot-name">AI 助手 · 深度模式对话</span></button>
+        <button class="shot" type="button" data-src="assets/images/life-os-6.png" data-name="插件能力定义 · 对外暴露的方法与参数签名"><img src="assets/images/life-os-6.png" alt="Life-OS 插件方法定义" loading="lazy"><span class="shot-name">插件方法 · 参数签名定义</span></button>
+        <button class="shot" type="button" data-src="assets/images/life-os-7.png" data-name="聊天中调用插件 · 场景化提示语引导"><img src="assets/images/life-os-7.png" alt="Life-OS 插件聊天引导" loading="lazy"><span class="shot-name">插件调用 · 场景提示引导</span></button>
       </div>
     </div>
   </div>
